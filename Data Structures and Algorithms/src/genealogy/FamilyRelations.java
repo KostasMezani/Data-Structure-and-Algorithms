@@ -311,4 +311,71 @@ public boolean isMother(String idA, String idB) {
                 motherA_siblingOf_motherB);
 
     }
+
+    // -- D.5 : relation(nameA, nameB) --
+    // Επιστρέφει την ΠΡΏΤΗ σχέση που ταιριάζει (με τη σειρά που ζητείται απο την εκφώνηση)
+    // ή " Δεν σχετίζονται " αν δεν βρεθεί σχέση.
+    public String relations(String nameA, String nameB){
+
+        //Basic validation
+        if (nameA == null || nameB == null) {
+            return "Σφάλμα: Δόθηκαν null ονόματα";
+        }
+
+        nameA = nameA.trim();
+        nameB = nameB.trim();
+
+        if (nameA.isEmpty() || nameB.isEmpty()) {
+            return "Σφάλμα: Δόθηκε κενό όνομα";
+        }
+
+        //1) name -> id lookup (απο το index που φτιάξαμε στο Μέρος C)
+        String idA = store.getIdByName(nameA);
+        String idB = store.getIdByName(nameB);
+
+        if (idA == null){
+            return "Το όνομα '" + nameA + "' dδεν βρέθηκε σε dataset";
+        }
+
+        if (idB == null) {
+            return "Το όνομα '" + nameB + "' dδεν βρέθηκε σε dataset";
+        }
+
+        // Προαιρετικό αλλά χρήσιμο: ίδιο ατομο
+        if (idA.equals(idB)){
+            return "Το '" + nameA + "' και το '" + nameB + "' είναι το ίδιο άτομο";
+        }
+
+        // 2) Έλεγχοι ΜΕ ΑΚΡΙΒΩΣ τη σειρά που ζητάει η εκφώνηση
+        if (isFather(idA, idB)){
+            return nameA + " είναι πατέρας του/της " + nameB + ".";
+        }
+
+        if (isMother(idA, idB)){
+            return nameA + " είναι μητέρα του/της " + nameB + ".";
+        }
+
+        if (isChild(idA, idB)){
+            return nameA + " είναι παιδί του/της " + nameB + ".";
+        }
+
+        if (isSibling(idA, idB)){
+            return nameA + " είναι αδελφός του/της " + nameB + ".";
+        }
+
+        if (isGrandparent(idA, idB)){
+            return nameA + " είναι παππούς/γιαγιά του/της " + nameB + ".";
+        }
+
+        if (isGrandchild(idA, idB)){
+            return nameA + " είναι εγγόνι του/της " + nameB + ".";
+        }
+
+        if (isFirstCousin(idA, idB)){
+            return nameA + " είναι πρώτος/πρώτη ξάδελφος/ξαδέλφη του/της " + nameB + ".";
+        }
+
+        // 3) Καμία σχέση
+        return "Δεν σχετίζονται";
+    }
 }
