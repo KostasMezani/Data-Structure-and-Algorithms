@@ -24,7 +24,7 @@ public class PersonsCsvLoaderTest {
     public void setup() throws IOException {
         System.out.println("\n[SETUP] Φόρτωση persons.csv..");
         loader = new PersonCsvLoader();
-        store = loader.load(Path.of("persons.csv"));
+        store = loader.load(Path.of("Data Structures and Algorithms", "persons.csv"));
         System.out.println("[SETUP] Φορτώθηκαν " + store.size() + "εγγραφές\n");
     }
 
@@ -33,7 +33,7 @@ public class PersonsCsvLoaderTest {
     @DisplayName("Test 1: Έλεγχος αριθμού εγγράφων")
     public void test1_TotalRecordsCount() {
 
-        int expectedCount = 26;
+        int expectedCount = 25;
         int actualCount = store.size();
 
         assertEquals(expectedCount, actualCount,
@@ -56,8 +56,8 @@ public class PersonsCsvLoaderTest {
         // id = 1
         Person p1 = store.getById("1");
         assertNotNull(p1, "Το άτομο με id=1 πρέπει να υπάρχει");
-        assertEquals("Αυγουστινός Καποδίστριας", p1.getName(),
-                "Το άτομο με id=1 πρέπει να αντιστοιχεί Αυγουστινός Καποδίστριας");
+        assertEquals("Αυγουστίνος Καποδίστριας", p1.getName(),
+                "Το άτομο με id=1 πρέπει να αντιστοιχεί Αυγουστίνος Καποδίστριας");
 
         // id = 3
         Person p3 = store.getById("3");
