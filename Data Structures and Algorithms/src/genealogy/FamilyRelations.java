@@ -312,6 +312,82 @@ public boolean isMother(String idA, String idB) {
 
     }
 
+    // -- E.1 : Half-Siblings --
+    public boolean isHalfSibling(String idA, String idB){
+        if (idA == null || idB == null){
+            System.out.println("[WARN] isHalfSibling: Ένα απο τα id's είναι null.");
+        }
+
+        if(idA.equals(idB)){
+            return false;
+        }
+
+        Person personA = store.getById(idA);
+        Person personB = store.getById(idB);
+
+        if (personA == null){
+            System.out.println("[WARN] isHalfSiblings: Το άτομο με id= " + idA + " δεν υπάρχει");
+            return false;
+        }
+
+        if (personB == null){
+            System.out.println("[WARN] isHalfSiblings: Το άτομο με id= " + idB + " δεν υπάρχει");
+            return false;
+        }
+
+        String fatherA = personA.getFatherId();
+        String motherA = personA.getMotherId();
+
+        String fatherB = personB.getFatherId();
+        String motherB = personB.getMotherId();
+
+        if ((fatherA == null && motherA == null) || (fatherB == null && motherB == null)){
+            return false;
+        }
+
+        boolean sameFather = (fatherA != null && fatherA.equals(fatherB));
+        boolean sameMother = (motherA != null && motherA.equals(motherB));
+
+        //Half-siblings = ακριβώς ένας κοινός γονέας
+        return (sameFather ^ sameMother); // XOR: true μόνο όταν ένα από τα δύο είναι true
+    }
+
+    // -- E.3 : Spouse Check --
+    public boolean isSpouse(String idA, String idB) {
+
+        if (idA == null || idB == null) {
+            System.out.println("[WARN] isSpouse: Ένα από τα id's είναι null.");
+            return false;
+        }
+
+        if (idA.equals(idB)) {
+            // δεν εχει νόημα να ειναι καποιος συζυγος του εαυτου του
+            return false;
+        }
+
+        Person personA = store.getById(idA);
+        Person personB = store.getById(idB);
+
+        if (personA == null) {
+            System.out.println("[WARN] isSpouse: To άτομο με id= " + idA + " δεν υπάρχει.");
+            return false;
+        }
+
+        if (personB == null) {
+            System.out.println("[WARN] isSpouse: Το άτομο με id= " + idB + " δεν υπάρχει");
+            return false;
+        }
+
+        String spouseA = personA.getSpouseId();
+        String spouseB = personB.getSpouseId();
+
+        // Symetric check για datesets που μπορεί να μην έχουν "αμοιβαία" spouse_id
+        boolean aPointsToB = (spouseA != null && spouseA.equals(idB));
+        boolean bPointsToA = (spouseB != null && spouseB.equals(idA));
+
+        return aPointsToB || bPointsToA;
+    }
+
     // -- D.5 : relation(nameA, nameB) --
     // Επιστρέφει την ΠΡΏΤΗ σχέση που ταιριάζει (με τη σειρά που ζητείται απο την εκφώνηση)
     // ή " Δεν σχετίζονται " αν δεν βρεθεί σχέση.
@@ -373,6 +449,14 @@ public boolean isMother(String idA, String idB) {
 
         if (isFirstCousin(idA, idB)){
             return nameA + " είναι πρώτος/πρώτη ξάδελφος/ξαδέλφη του/της " + nameB + ".";
+        }
+
+        if (isHalfSibling(idA, idB)){
+            return nameA + " είναι ετεροθαλής αδελφός του/της " + nameB + ".";
+        }
+
+        if (isSpouse(idA, idB)){
+            return nameA + " είναι σύζυγός του/της " + nameB + ".";
         }
 
         // 3) Καμία σχέση
