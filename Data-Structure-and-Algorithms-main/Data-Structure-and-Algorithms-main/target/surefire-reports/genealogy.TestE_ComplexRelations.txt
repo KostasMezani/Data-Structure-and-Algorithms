@@ -1,0 +1,12 @@
+-------------------------------------------------------------------------------
+Test set: genealogy.TestE_ComplexRelations
+-------------------------------------------------------------------------------
+Tests run: 11, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.031 s <<< FAILURE! -- in genealogy.TestE_ComplexRelations
+genealogy.TestE_ComplexRelations.testIsHalfSibling_NullId -- Time elapsed: 0.010 s <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "String.equals(Object)" because "idA" is null
+	at genealogy.FamilyRelations.isHalfSibling(FamilyRelations.java:321)
+	at genealogy.TestE_ComplexRelations.testIsHalfSibling_NullId(TestE_ComplexRelations.java:76)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
