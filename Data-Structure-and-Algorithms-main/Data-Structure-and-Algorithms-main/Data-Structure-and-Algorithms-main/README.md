@@ -6,11 +6,9 @@
 
 ## 👥 Ομάδα
 
-- **Philippos Lefteriotis** (ΑΜ: xxxx2353)
-- **Kostas Mezani** (ΑΜ: xxxx3201)  
-- **Vasilis Pasiotis** (ΑΜ: 2873435)
-
-*(Αντικαταστήστε τα xxxx με τα πραγματικά σας ΑΜ)*
+- **Philippos Lefteriotis** (ΑΜ: 2873432)  -- ( A & B Part & F.2(Screencast) & F.3(Παρουσίαση))
+- **Kostas Mezani** (ΑΜ: 2873433)  -- ( C & D & E & F.1 )
+- **Vasilis Pasiotis** (ΑΜ: 2873435) -- ( C & D & E & F.1 )
 
 ---
 
@@ -161,3 +159,4 @@ id,name,gender,father_id,mother_id,spouse_id
 - Το CSV είναι **UTF-8 encoded**
 - Τα tests τρέχουν με **JUnit 5**
 - AM keys για demo: {10, 4, 18, 43, 32, 10, 25, 4, 50, 18, 32, 7}
+
