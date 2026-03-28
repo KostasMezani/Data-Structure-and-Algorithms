@@ -155,9 +155,9 @@ id,name,gender,father_id,mother_id,spouse_id
 
 ## 📝 Σημειώσεις
 
-- Όλος ο κώδικας είναι σε **Java 17**
-- Χρησιμοποιεί **Maven** για build/dependency management
-- Το CSV είναι **UTF-8 encoded**
-- Τα tests τρέχουν με **JUnit 5**
-- AM keys για demo: {10, 4, 18, 43, 32, 10, 25, 4, 50, 18, 32, 7}
+All code is in **Java 17**
+- Uses **Maven** for build/dependency management
+- CSV is **UTF-8 encoded**
+- Tests run with **JUnit 5**
+- AM keys for demo: {10, 4, 18, 43, 32, 10, 25, 4, 50, 18, 32, 7}
 
